@@ -1,7 +1,10 @@
 import { Button, Result } from "antd";
+import ProMenuLayout from "components/ProMenuLayout";
 import ProSideMenuLayout from "components/ProSideMenuLayout";
 import About from "pages/About";
 import Home from "pages/Home";
+import News from "pages/News";
+import NewsDetail from "pages/NewsDetail";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 
@@ -9,9 +12,13 @@ const ProRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<ProSideMenuLayout />}>
+                <Route path="/" element={<ProMenuLayout />}>
                     <Route index path='home' element={<Home />} />
-                    <Route index path='about' element={<About />} />
+                    <Route path="news" >
+                        <Route index path="" element={<News/>} />
+                        <Route path="detail" element={<NewsDetail/>} />
+                    </Route>
+                    <Route  path='about' element={<About />} />
 
                     <Route path="*" element={<Result
                         status="404"
