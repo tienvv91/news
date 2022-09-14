@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Menu } from 'antd';
 import { useLocation } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { menuItems } from 'config/menu';
 
 const ProMenu = (props) => {
+    let { topic } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
     const [selectKeys, setSelectKeys] = useState([])
+    const [items, setItems] = useState([])
+
+    useEffect(()=>{
+        menuItems.forEach((el, idx) => el.key = el.label)
+        setItems(menuItems)
+    })
 
     useEffect(() => {
-        let key = [menuItems[0]?.path];
+        
+        let key = [menuItems[0]?.key];
         const pathSnippets = location.pathname.split('/').filter(i => i);
         if (pathSnippets.length <= 0) {
-            navigate(`/${key}`)
+            navigate(`/${menuItems[0].path}/${menuItems[0].label.toLowerCase()}`)
         }
-        const activeMenu = menuItems.find(m => `${m.path}` === pathSnippets[0])
+        const activeMenu = menuItems.find(m => `${m.path}` === pathSnippets[0] && m.label.toLocaleLowerCase() == topic)
         if (activeMenu?.children) {
             const childActiveMenu = activeMenu.children.find(m => m.path === pathSnippets[1])
             if (childActiveMenu) {
@@ -31,15 +39,15 @@ const ProMenu = (props) => {
     return (<>
         <Menu
             theme="dark"
-            mode="inline"
+            mode="horizontal"
             defaultSelectedKeys={['0']}
-            items={menuItems}
+            items={items}
 
             selectedKeys={selectKeys}
             onClick={(event) => {
-                const selected = menuItems.find(i => i.key === event.key)
+                const selected = items.find(i => i.key === event.key)
                 if (selected) {
-                    navigate(`/${selected.path}`);
+                    navigate(`/${selected.path}/${selected.label.toLowerCase()}`);
                 }
 
             }}

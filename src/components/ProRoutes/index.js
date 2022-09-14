@@ -13,12 +13,15 @@ const ProRoutes = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<ProMenuLayout />}>
-                    <Route index path='home' element={<Home />} />
+                    {/* <Route  path='home' element={<Home />} /> */}
+
                     <Route path="news" >
-                        <Route index path="" element={<News/>} />
-                        <Route path="detail" element={<NewsDetail/>} />
+                        <Route index path="" element={<News />} />
+                        <Route path=":topic" element={<News />} />
+                        <Route path=":topic/:title" element={<NewsDetail />} />
                     </Route>
-                    <Route  path='about' element={<About />} />
+
+                    <Route path='about' element={<About />} />
 
                     <Route path="*" element={<Result
                         status="404"

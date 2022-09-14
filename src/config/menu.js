@@ -9,19 +9,25 @@ export const menuItems = [
     {
         key: '0',
         icon: <HomeOutlined />,
-        label: "Home",
-        path: 'home'
+        label: "Movies",
+        path: 'news'
     },
     {
         key: '1',
         icon: <FileTextOutlined  />,
-        label: "News",
+        label: "Music",
         path: 'news'
     },
     {
-        key: '2',
-        icon: <InfoCircleOutlined />,
-        label: "About",
-        path: 'about'
+        key: '1',
+        icon: <FileTextOutlined  />,
+        label: "Awards",
+        path: 'news'
+    },
+    {
+        key: '1',
+        icon: <FileTextOutlined  />,
+        label: "Sports",
+        path: 'news'
     }
 ]  
