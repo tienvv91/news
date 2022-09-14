@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Crawl news using nodejs and Reactjs
 
 ![image](https://user-images.githubusercontent.com/35139230/190205858-a6be2761-059c-4506-9e52-35c7ab314951.png)
 
